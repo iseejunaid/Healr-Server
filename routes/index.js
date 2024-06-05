@@ -36,8 +36,8 @@ router.get("/home", async function (req, res, next) {
           userId: doc.id,
           userName: doc.data().fullName,
           country: doc.data().country,
-          // email: doc.data().email,
-          // phone: doc.data().phone,
+          email: doc.data().email,
+          phone: doc.data().phone,
           requestDate: formattedDate,
           dob: doc.data().dob,
           backImgURL: doc.data().backImgURL,
@@ -46,7 +46,6 @@ router.get("/home", async function (req, res, next) {
           nationaId: doc.data().nationalID,
         });
       });
-      console.log(data);
     } else if (tab === "otherTab") {
     } else {
       data = [];

@@ -37,7 +37,7 @@
       </div>
       <div class="h-full px-8 pt-4" style="width: 95%">
         <h1>Verification Requests</h1>
-        <div class="mt-8 flex justify-between" style="width: 33%;">
+        <div class="mt-8 flex justify-between" style="width: 33%">
           <button
             class="p-2 text-sm rounded w-36 h-9 poppins-medium text-white"
             style="background-color: <%= tab === 'newRequests' ? '#00adb5' : '#222831' %>;"
@@ -75,17 +75,127 @@
               </tr>
             </thead>
             <tbody>
+              <% data.forEach(function(item) { %>
               <tr class="poppins-regular text-sm h-16" style="color: #4f4f4f">
-                <td class="p-2 text-center">abc123xyz789</td>
-                <td class="p-2 text-center">John Doe</td>
-                <td class="p-2 text-center">England</td>
-                <td class="p-2 text-center">johndoe@123.com</td>
-                <td class="p-2 text-center">0320202031</td>
-                <td class="p-2 text-center">13-11-2222</td>
+                <td class="p-2 text-center"><%= item.userId %></td>
+                <td class="p-2 text-center"><%= item.userName %></td>
+                <td class="p-2 text-center"><%= item.country %></td>
+                <td class="p-2 text-center"><%= item.email %></td>
+                <td class="p-2 text-center"><%= item.phone %></td>
+                <td class="p-2 text-center"><%= item.requestDate %></td>
                 <td class="p-2 text-center">
-                    <button class="p-2 poppins-bold rounded-lg text-white w-32 h-12" style="background-color: #00adb5">View</button>
+                  <button
+                    class="p-2 poppins-bold rounded-lg text-white w-32 h-12"
+                    style="background-color: #00adb5"
+                  >
+                    View
+                  </button>
+                </td>
+                <td>
+                  <div
+                    class="absolute h-full w-full top-0 left-0 flex justify-center items-center"
+                    style="background: rgba(0, 0, 0, 0.4)"
+                  >
+                    <div
+                      class="bg-white rounded-3xl p-8"
+                      style="width: 60%; height: 80%"
+                    >
+                      <div class="flex justify-between p-4">
+                        <h1>User Detail</h1>
+                        <img src="/images/close.svg" alt="close" />
+                      </div>
+                      <div
+                        style="
+                          max-height: 80%;
+                          overflow-y: scroll;
+                          overflow-x: hidden;
+                        "
+                      >
+                        <div class="p-4">
+                          <table class="w-full">
+                            <tr class="h-12 border-b border-[#E0E0E0]">
+                              <td><h3>ID:</h3></td>
+                              <td class="value"><%= item.userId%></td>
+                              <td><h3>Full Name:</h3></td>
+                              <td class="value"><%= item.userName%></td>
+                            </tr>
+                            <tr class="h-12 border-b border-[#E0E0E0]">
+                              <td><h3>Country:</h3></td>
+                              <td class="value"><%= item.country%></td>
+                              <td><h3>National ID:</h3></td>
+                              <td class="value"><%= item.nationaId%></td>
+                            </tr>
+                            <tr class="h-12 border-b border-[#E0E0E0]">
+                              <td><h3>D.O.B:</h3></td>
+                              <td class="value"><%= item.dob%></td>
+                              <td><h3>Email:</h3></td>
+                              <td class="value"><%= item.email%></td>
+                            </tr>
+                            <tr class="h-12 border-b border-[#E0E0E0]">
+                              <td><h3>Phone No:</h3></td>
+                              <td class="value"><%= item.phone%></td>
+                              <td><h3>Request Date:</h3></td>
+                              <td class="value"><%= item.requestDate%></td>
+                            </tr>
+                          </table>
+                        </div>
+                        <h3 class="pl-4">National ID Images:</h3>
+                        <div class="flex w-full mt-4 justify-center">
+                          <div class="flex justify-center w1/2">
+                            <img
+                              class="rounded-xl"
+                              src="<%= item.frontImgURL %>"
+                              alt="front Image"
+                              height="152px"
+                              width="300px"
+                            />
+                          </div>
+                          <div class="flex justify-center w-1/2">
+                            <img
+                              class="rounded-xl"
+                              src="<%= item.backImgURL %>"
+                              alt="back Image"
+                              height="152px"
+                              width="300px"
+                            />
+                          </div>
+                        </div>
+                        <h3 class="pl-4 mt-8">User Selfie:</h3>
+                        <div
+                          class="flex justify-center items-center mt-4 ml-12"
+                          style="
+                            height: 150px;
+                            width: 150px;
+                            border-radius: 50%;
+                            overflow: hidden;
+                          "
+                        >
+                          <img
+                            src="<%= item.selfieImgURL %>"
+                            alt="Selfie"
+                            style="height: 100%; width: 100%; object-fit: cover"
+                          />
+                        </div>
+                      </div>
+                      <div class="flex justify-end mt-2">
+                        <button
+                          class="p-2 poppins-bold rounded-lg text-white w-32 h-12"
+                          style="background-color: #00adb5"
+                        >
+                          Verify
+                        </button>
+                        <button
+                          class="p-2 poppins-bold rounded-lg text-white w-32 h-12 ml-4"
+                          style="background-color: #eb5757"
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </td>
               </tr>
+              <% }); %>
             </tbody>
           </table>
         </div>
