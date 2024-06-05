@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healr | Admin</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body class="h-screen w-full">
+    <div class="flex h-full w-full">
+      <div
+        class="h-full flex flex-col items-center justify-between"
+        style="width: 5%; background-color: #222831"
+      >
+        <div class="p-4 cursor-pointer" onclick="home()">
+          <img src="/images/logo.svg" alt="Healr Logo" />
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="p-4 cursor-pointer" onclick="logout()">
+            <img src="/images/logout.svg" alt="logout" />
+          </div>
+          <div class="p-4 cursor-pointer" onclick="openSettings()">
+            <img src="/images/settings.svg" alt="settings" />
+          </div>
+        </div>
+      </div>
+      <div class="h-full px-8 pt-4" style="width: 95%">
+        <h1>Verification Requests</h1>
+        <div class="mt-8 flex justify-between" style="width: 33%;">
+          <button
+            class="p-2 text-sm rounded w-36 h-9 poppins-medium text-white"
+            style="background-color: <%= tab === 'newRequests' ? '#00adb5' : '#222831' %>;"
+            onclick="newRequestsTab()"
+          >
+            New Requests
+          </button>
+
+          <button
+            class="p-2 text-sm rounded w-36 h-9 poppins-medium text-white"
+            style="background-color: <%= tab === 'verified' ? '#00adb5' : '#222831' %>;"
+            onclick="verifiedTab()"
+          >
+            Verified
+          </button>
+          <button
+            class="p-2 text-sm rounded w-36 h-9 poppins-medium text-white"
+            style="background-color: <%= tab === 'rejected' ? '#00adb5' : '#222831' %>"
+            onclick="rejectedTab()"
+          >
+            Rejected
+          </button>
+        </div>
+        <div class="mt-8">
+          <table class="w-full">
+            <thead class="text-white h-16" style="background-color: #222831">
+              <tr>
+                <th class="p-2 rounded-tl-md">ID</th>
+                <th class="p-2 w-48">User Name</th>
+                <th class="p-2">Country</th>
+                <th class="p-2">Email</th>
+                <th class="p-2">Phone No</th>
+                <th class="p-2">Request Date</th>
+                <th class="p-2 rounded-tr-md"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="poppins-regular text-sm h-16" style="color: #4f4f4f">
+                <td class="p-2 text-center">abc123xyz789</td>
+                <td class="p-2 text-center">John Doe</td>
+                <td class="p-2 text-center">England</td>
+                <td class="p-2 text-center">johndoe@123.com</td>
+                <td class="p-2 text-center">0320202031</td>
+                <td class="p-2 text-center">13-11-2222</td>
+                <td class="p-2 text-center">
+                    <button class="p-2 poppins-bold rounded-lg text-white w-32 h-12" style="background-color: #00adb5">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script>
+      function home() {
+        window.location.href = "/home?tab=newRequests";
+      }
+      function logout() {
+        window.location.href = "/logout";
+      }
+      function openSettings() {
+        window.location.href = "/settings";
+      }
+      function rejectedTab() {
+        window.location.href = "/home?tab=rejected";
+      }
+      function verifiedTab() {
+        window.location.href = "/home?tab=verified";
+      }
+      function newRequestsTab() {
+        window.location.href = "/home?tab=newRequests";
+      }
+    </script>
+  </body>
+</html>
