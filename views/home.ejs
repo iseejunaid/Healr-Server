@@ -70,7 +70,10 @@
                 <th class="p-2">Country</th>
                 <th class="p-2">Email</th>
                 <th class="p-2">Phone No</th>
-                <th class="p-2">Request Date</th>
+                <th class="p-2">
+                  <%= tab === 'newRequests' ? "Request Date" : "Action Date" %>
+                </th>
+
                 <th class="p-2 rounded-tr-md"></th>
               </tr>
             </thead>
@@ -82,18 +85,23 @@
                 <td class="p-2 text-center"><%= item.country %></td>
                 <td class="p-2 text-center"><%= item.email %></td>
                 <td class="p-2 text-center"><%= item.phone %></td>
-                <td class="p-2 text-center"><%= item.requestDate %></td>
+                <td class="p-2 text-center">
+                  <%= tab === 'newRequests' ? item.requestDate :
+                  item.verificationDate %>
+                </td>
                 <td class="p-2 text-center">
                   <button
                     class="p-2 poppins-bold rounded-lg text-white w-32 h-12"
                     style="background-color: #00adb5"
+                    onclick="document.getElementById('modal-<%= item.userId %>').classList.toggle('hidden')"
                   >
                     View
                   </button>
                 </td>
                 <td>
                   <div
-                    class="absolute h-full w-full top-0 left-0 flex justify-center items-center"
+                    id="modal-<%= item.userId %>"
+                    class="absolute h-full w-full top-0 left-0 flex justify-center items-center hidden"
                     style="background: rgba(0, 0, 0, 0.4)"
                   >
                     <div
@@ -102,7 +110,12 @@
                     >
                       <div class="flex justify-between p-4">
                         <h1>User Detail</h1>
-                        <img src="/images/close.svg" alt="close" />
+                        <img
+                          class="cursor-pointer"
+                          src="/images/close.svg"
+                          alt="close"
+                          onclick="document.getElementById('modal-<%= item.userId %>').classList.toggle('hidden')"
+                        />
                       </div>
                       <div
                         style="
@@ -134,12 +147,22 @@
                             <tr class="h-12 border-b border-[#E0E0E0]">
                               <td><h3>Phone No:</h3></td>
                               <td class="value"><%= item.phone%></td>
-                              <td><h3>Request Date:</h3></td>
-                              <td class="value"><%= item.requestDate%></td>
+                              <td>
+                                <h3>
+                                  <%= tab === 'newRequests' ? "Request Date" :
+                                  "Action Date" %>
+                                </h3>
+                              </td>
+                              <td class="value">
+                                <%= tab === 'newRequests' ? item.requestDate :
+                                item.verificationDate %>
+                              </td>
                             </tr>
                           </table>
                         </div>
+                        <% if (tab == 'newRequests') { %>
                         <h3 class="pl-4">National ID Images:</h3>
+
                         <div class="flex w-full mt-4 justify-center">
                           <div class="flex justify-center w1/2">
                             <img
@@ -176,21 +199,26 @@
                             style="height: 100%; width: 100%; object-fit: cover"
                           />
                         </div>
+                        <% } %>
                       </div>
+                      <% if (tab == 'newRequests') { %>
                       <div class="flex justify-end mt-2">
                         <button
                           class="p-2 poppins-bold rounded-lg text-white w-32 h-12"
                           style="background-color: #00adb5"
+                          onclick="window.location.href='/verify?id=<%= item.userId %>&country=<%= item.country %>&dob=<%= item.dob %>&nationalID=<%= item.nationaId %>&email=<%= item.email %>'"
                         >
                           Verify
                         </button>
                         <button
                           class="p-2 poppins-bold rounded-lg text-white w-32 h-12 ml-4"
                           style="background-color: #eb5757"
+                          onclick="window.location.href='/reject?id=<%= item.userId %>&email=<%= item.email %>'"
                         >
                           Reject
                         </button>
                       </div>
+                      <% } %>
                     </div>
                   </div>
                 </td>
