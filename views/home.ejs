@@ -30,9 +30,6 @@
           <div class="p-4 cursor-pointer" onclick="logout()">
             <img src="/images/logout.svg" alt="logout" />
           </div>
-          <div class="p-4 cursor-pointer" onclick="openSettings()">
-            <img src="/images/settings.svg" alt="settings" />
-          </div>
         </div>
       </div>
       <div class="h-full px-8 pt-4" style="width: 95%">
@@ -235,9 +232,6 @@
       }
       function logout() {
         window.location.href = "/logout";
-      }
-      function openSettings() {
-        window.location.href = "/settings";
       }
       function rejectedTab() {
         window.location.href = "/home?tab=rejected";
